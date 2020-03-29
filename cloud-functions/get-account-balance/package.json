@@ -1,0 +1,13 @@
+{
+    "name": "get-account-balance",
+    "version": "0.0.1",
+    "private": true,
+    "engines": {
+      "node": "^10.13.0"
+    },
+    "dependencies": {
+      "@google-cloud/pubsub": "~1.6.0",
+      "puppeteer": "~2.1.0"
+    }
+  }
+  

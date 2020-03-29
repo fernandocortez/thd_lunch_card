@@ -1,0 +1,13 @@
+{
+  "name": "register-account-number",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "^10.13.0"
+  },
+  "dependencies": {
+    "@google-cloud/firestore": "~3.7.0",
+    "@google-cloud/pubsub": "~1.6.0",
+    "puppeteer": "~2.1.0"
+  }
+}
