@@ -4,8 +4,15 @@ const puppeteer = require('puppeteer');
 const firestore = new Firestore();
 const account_numbers = firestore.collection('account_numbers');
 
-exports.registerAccountNumber = async function registerAccountNumber(pubSubEvent, context, callback) {
-  const { accountNumber, phoneNumber } = JSON.parse(Buffer.from(pubSubEvent.data, 'base64').toString());
+exports.registerAccountNumber = async function registerAccountNumber(event, context, callback) {
+  let accountNumber, phoneNumber;
+  try {
+    const data = JSON.parse(Buffer.from(event.data, 'base64').toString());
+    accountNumber = data.accountNumber;
+    phoneNumber = data.phoneNumber;
+  } catch (err) {
+    return callback(err, 'Failed to get account and phone number from event');
+  }
 
   const matchingRecords = await account_numbers.where('account_number', '==', accountNumber).get();
   const accountNumberAlreadyRegistered = matchingRecords.size > 0;

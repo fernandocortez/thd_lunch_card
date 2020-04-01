@@ -1,7 +1,13 @@
 const puppeteer = require('puppeteer');
 
-exports.getAccountBalance = async function getAccountBalance(pubSubEvent, context, callback) {
-  const { accountNumber } = JSON.parse(Buffer.from(pubSubEvent.data, 'base64').toString());
+exports.getAccountBalance = async function getAccountBalance(event, context, callback) {
+  let accountNumber;
+  try {
+    const data = JSON.parse(Buffer.from(event.data, 'base64').toString());
+    accountNumber = data.accountNumber;
+  } catch (err) {
+    return callback(err, 'Failed to get account number from event');
+  }
 
   try {
     const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
@@ -31,7 +37,7 @@ exports.getAccountBalance = async function getAccountBalance(pubSubEvent, contex
 
     await browser.close();
 
-    const message = accountBalance + '\n\n' + recentAccountHistory.join('\n');
+    const message = accountBalance + '\n\n' + recentAccountHistory.join('\n') + '\n';
     callback(null, message);
   } catch (err) {
     callback(err, "Failed to get account balance");

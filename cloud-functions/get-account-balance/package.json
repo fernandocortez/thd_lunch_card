@@ -1,13 +1,18 @@
 {
-    "name": "get-account-balance",
-    "version": "0.0.1",
-    "private": true,
-    "engines": {
-      "node": "^10.13.0"
-    },
-    "dependencies": {
-      "@google-cloud/pubsub": "~1.6.0",
-      "puppeteer": "~2.1.0"
-    }
+  "name": "get-account-balance",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "^10.13.0"
+  },
+  "scripts": {
+    "dev": "functions-framework --target=getAccountBalance --signature-type=event"
+  },
+  "dependencies": {
+    "@google-cloud/pubsub": "~1.6.0",
+    "puppeteer": "~2.1.0"
+  },
+  "devDependencies": {
+    "@google-cloud/functions-framework": "~1.5.0"
   }
-  
+}
