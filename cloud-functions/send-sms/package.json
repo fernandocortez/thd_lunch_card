@@ -1,0 +1,17 @@
+{
+  "name": "send-sms",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": "^10.13.0"
+  },
+  "scripts": {
+    "dev": "functions-framework --target=sendSms --signature-type=event"
+  },
+  "dependencies": {
+    "twilio": "~3.41.0"
+  },
+  "devDependencies": {
+    "@google-cloud/functions-framework": "~1.5.0"
+  }
+}
