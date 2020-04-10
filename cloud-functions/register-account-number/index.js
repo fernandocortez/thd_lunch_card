@@ -1,6 +1,10 @@
 const { Firestore } = require('@google-cloud/firestore');
 const puppeteer = require('puppeteer');
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const firestore = new Firestore();
 const account_numbers = firestore.collection('account_numbers');
 

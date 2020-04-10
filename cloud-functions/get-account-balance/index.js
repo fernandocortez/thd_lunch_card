@@ -1,5 +1,9 @@
 const puppeteer = require('puppeteer');
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 exports.getAccountBalance = async function getAccountBalance(event, context, callback) {
   let accountNumber;
   try {
